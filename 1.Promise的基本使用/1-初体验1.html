@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>01初体验</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise 初体验1</h2>
+        <button class="btn btn-primary" id="btn">点击抽奖</button>
+    </div>
+
+    <script>
+        //生成随机数
+        function rand2(min,max){
+            return Math.floor(Math.random() * (max-min))+min;
+        }
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click',function(){
+            const pro = new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    let n = rand2(1,100);
+                    if(n<=20){
+                        resolve(n);
+                    }else{
+                        reject(n);
+                    }
+                },50);
+            });
+            pro.then((value)=>{
+                console.log('成功' + value);
+            },(reason)=>{
+                console.log('失败' + reason);
+            });
+        });
+    </script>
+</body>
+</html>

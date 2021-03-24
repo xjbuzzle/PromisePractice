@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise自定义封装</title>
+    <script src="2-指定多个回调.js"></script>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve,reject)=>{
+            //改成异步操作之后，会先去then方法指定回调再改变状态
+            setTimeout(()=>{
+                resolve('OK');
+            },1000);
+        });
+        //指定回调1
+        p.then(value=>{
+            console.log(value);
+        },reason=>{
+            console.warn(reason);
+        });
+        //指定回调2
+        p.then(value=>{
+            alert(value);
+        },reason=>{
+            alert(reason);
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise自定义封装</title>
+    <script src="7-封装resolve方法.js"></script>
+</head>
+<body>
+    <script>
+       let p1 = Promise.resolve('111');
+       let p2 = Promise.resolve(new Promise((resolve,reject)=>{
+           new Promise((resolve,reject)=>{
+               resolve('OK');
+           })
+       }))
+
+       let p3 = Promise.reject('222');
+       let p4 = Promise.reject(new Promise((resolve,reject)=>{
+           reject('error');
+       }))
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise + AJAX</h2>
+        <button class="btn btn-primary" id="btn">发送请求</button>
+    </div>
+
+    <script>
+        var btn = document.querySelector('#btn');
+        btn.addEventListener('click',function(){
+            const p = new Promise((resolve,reject)=>{
+                //1.创建对象
+                const xhr = new XMLHttpRequest();
+                //2.初始化
+                xhr.open('GET','https://api.apiopen.top/getJoke');
+                //3.发送请求
+                xhr.send();
+                //4.处理响应结果
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status <= 300){
+                            resolve(xhr.response);
+                        }else{
+                            reject(xhr.status);
+                        }
+                    }
+                }
+            });
+            
+            p.then((value)=>{
+                console.log(value);
+            },reason=>{
+                console.warn(reason);
+            })
+        })
+    </script>
+</body>
+</html>

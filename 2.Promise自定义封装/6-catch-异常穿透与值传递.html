@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise自定义封装</title>
+    <script src="6-catch-异常穿透与值传递.js"></script>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve,reject)=>{
+            //改成异步操作之后，会先去then方法指定回调再改变状态
+            setTimeout(()=>{
+                reject('OK');
+            },1000);
+        });
+        console.log(p);
+
+        const res = p.then(value=>{
+            console.log(111);
+        }).then(value=>{
+            console.log(222);
+        }).catch(reason=>{
+            console.warn(reason);
+        })
+        
+        // const res = p.catch(reason=>{
+        //     console.warn(reason);
+        // })
+        console.log(res);
+    </script>
+</body>
+</html>
