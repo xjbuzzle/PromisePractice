@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise自定义封装</title>
+    <script src="8-all方法的封装.js"></script>
+</head>
+<body>
+    <script>
+       let p1 = Promise.resolve('111');
+
+       let p2 = Promise.resolve('222');
+
+       let p3 = Promise.resolve(new Promise((resolve,reject)=>{
+           reject('error');
+       }));
+
+       //all方法是Promise函数的方法，不是实例化对象的方法
+       //all方法返回一个新的promise对象，值和状态由数组决定
+       let result = Promise.all([p1,p2,p3]);
+       console.log(result);
+    </script>
+</body>
+</html>
