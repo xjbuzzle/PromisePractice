@@ -67,25 +67,25 @@ Promise.prototype.then = function(onResolved,onRejected){
         //es6中的简写大括号，类似于value=>{return value;}
     }
 
-    //封装代码-提高复用率
-    function callback(type){
-        try{
-            let res = type(self.promiseResult);
-            if(res instanceof Promise){
-                res.then(v=>{
-                    resolve(v);
-                },r=>{
-                    reject(r);
-                })
-            }else{
-                resolve(res);
-            }
-        }catch(e){
-            reject(e);
-        }
-    }
     //then方法会返回一个新的promise对象
     return new Promise((resolve,reject)=>{
+        //封装代码-提高复用率
+        function callback(type){
+            try{
+                let res = type(self.promiseResult);
+                if(res instanceof Promise){
+                    res.then(v=>{
+                        resolve(v);
+                    },r=>{
+                        reject(r);
+                    })
+                }else{
+                    resolve(res);
+                }
+            }catch(e){
+                reject(e);
+            }
+        }
         //执行回调函数
         if(self.promiseState === 'resolved' || self.promiseState === 'fullfilled'){
             //如果成功的回调函数里面抛出异常，用try{}catch{}包裹
