@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise自定义封装</title>
+    <script src="10-回调函数-异步执行.js"></script>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve,reject)=>{
+            resolve('OK');
+            console.log(111);
+        });
+
+        p.then(value=>{
+            console.log(222);
+        })
+
+        console.log(333);
+        //打印：111 333 222
+        //因为then方法里面的回调函数是异步执行的，需要等所有的同步代码执行完，才会去执行
+    </script>
+</body>
+</html>
