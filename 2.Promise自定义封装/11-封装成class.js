@@ -71,7 +71,7 @@ class Promise{
         
         //因为值传递的时候可以在then里面不传回调，所以，导致then接收到的是两个undefined
         //对onResolved方法进行初始化
-        if(typeof onRejected !== 'function'){
+        if(typeof onResolved !== 'function'){
             //如果接收到的不是函数类型，那就让它变成函数，然后值传递
             onResolved = value => value;
             //es6中的简写大括号，类似于value=>{return value;}
